@@ -11,7 +11,7 @@ const printError = (error) => {
 const printSuccess = (message) => {
     console.log(dedent`
         ${chalk.bgGreen('Success:>> ')}
-        ${chalk.bold(.message)}
+        ${chalk.bold(message)}
     `)
 }
 
