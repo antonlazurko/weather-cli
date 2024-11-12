@@ -20,9 +20,10 @@ const saveToken = async token => {
 
 const initCLI = () => {
     const { help, city, token } = getArgs(process.argv);
+    console.log(process.env);
+
     if(help) {
-        printHelp(help);
-    }
+        printHelp(help);    }
     if(city) {
         printSuccess('city', city);
     }

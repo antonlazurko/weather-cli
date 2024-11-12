@@ -11,7 +11,7 @@ const getWeather = async (city) => {
         return
     }
     // const url = `${weatherUrl}?q=${city}&appid=${process.env.WEATHER_TOKEN}`
-    const token = await getKeyValue(TOKEN_DICTIONARY.token)
+    const token = process.env.TOKEN ?? await getKeyValue(TOKEN_DICTIONARY.token)
     if(!token) {
         throw new Error('API key is not initialized, use -token [API_KEY]')
     }
