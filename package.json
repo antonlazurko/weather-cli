@@ -1,0 +1,32 @@
+{
+  "name": "weather-cli-antonlazurko",
+  "version": "1.0.0",
+  "description": "CLI for getting weather ",
+  "main": "weather.js",
+  "type": "module",
+  "bin": {
+    "weather": "./weather.js"
+  },
+  "scripts": {
+    "start": "node weather.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/antonlazurko/weather-cli.git"
+  },
+  "keywords": [
+    "weather",
+    "cli"
+  ],
+  "author": "Anton Lazurko",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/antonlazurko/weather-cli/issues"
+  },
+  "homepage": "https://www.npmjs.com/package/weather-cli-antonlazurko",
+  "dependencies": {
+    "axios": "^1.7.7",
+    "chalk": "^5.3.0",
+    "dedent-js": "^1.0.1"
+  }
+}
