@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import { getArgs } from './helpers/args.js';
 
-const initCLI = (params) => {
+const initCLI = () => {
     console.log('Initializing CLI');
     const { help, city, token } = getArgs(process.argv);
     if(help) {
