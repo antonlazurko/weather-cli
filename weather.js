@@ -1,36 +1,22 @@
 #!/usr/bin/env node
 import { getArgs } from './helpers/args.js';
-import { printHelp, printSuccess, printError } from './services/log.services.js';
-import { saveKeyValue } from './services/storage.service.js';
-import { getWeather } from './services/api.service.js';
-import { TOKEN_DICTIONARY } from './const/dictionary.js';
+import { printHelp } from './services/log.services.js';
+import { saveCity, saveToken } from './helpers/save.js';
+import { getForecast } from './services/forecast.service.js';
 
-const saveToken = async token => {
-    if(!token.length) {
-        printError(new Error('Token is not specified'))
-        return
-    }
-    try {
-        await saveKeyValue(TOKEN_DICTIONARY.token, token);
-        printSuccess('Token saved')
-    } catch (error) {
-        printError(error)
-    }
-}
-
-const initCLI = () => {
+const initCLI = async () => {
     const { help, city, token } = getArgs(process.argv);
-    console.log(process.env);
 
     if(help) {
-        printHelp(help);    }
+        printHelp();
+    }
     if(city) {
-        printSuccess('city', city);
+        await saveCity(city)
     }
     if(token) {
-        return saveToken(token)
+        await saveToken(token)
     }
-    getWeather(city)
+    getForecast()
 }
 
 initCLI()

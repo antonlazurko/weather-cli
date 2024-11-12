@@ -3,17 +3,40 @@ import axios from 'axios'
 
 import { getKeyValue } from '../services/storage.service.js'
 import { weatherUrl } from '../const/url.js'
-import { TOKEN_DICTIONARY } from '../const/dictionary.js'
+import { DICTIONARY } from '../const/dictionary.js'
 
-const getWeather = async (city) => {
+const getIcon = (icon) => {
+	switch (icon.slice(0, -1)) {
+		case '01':
+			return '☀️';
+		case '02':
+			return '🌤️';
+		case '03':
+			return '☁️';
+		case '04':
+			return '☁️';
+		case '09':
+			return '🌧️';
+		case '10':
+			return '🌦️';
+		case '11':
+			return '🌩️';
+		case '13':
+			return '❄️';
+		case '50':
+			return '🌫️';
+	}
+};
+
+const getWeather = async () => {
+    const token = process.env.TOKEN ?? await getKeyValue(DICTIONARY.token)
+    const city = process.env.CITY ?? await getKeyValue(DICTIONARY.city)
+
     if(!city) {
-        printHelp()
-        return
+        throw new Error('City is not specified, use -city [city name]')
     }
-    // const url = `${weatherUrl}?q=${city}&appid=${process.env.WEATHER_TOKEN}`
-    const token = process.env.TOKEN ?? await getKeyValue(TOKEN_DICTIONARY.token)
     if(!token) {
-        throw new Error('API key is not initialized, use -token [API_KEY]')
+        throw new Error('API key is not specified, use -token [API_KEY]')
     }
 
     const { data } = await axios.get(`${weatherUrl}?q=${city}&appid=${token}&lang=ru&units=metric`, {
@@ -55,4 +78,4 @@ const getWeather = async (city) => {
     // })
 }
 
-export { getWeather }
+export { getWeather, getIcon }

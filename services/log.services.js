@@ -1,6 +1,8 @@
 import chalk from "chalk"
 import dedent from "dedent-js"
 
+import { getWeatherTemplate } from '../templates/weatherTemplate.js';
+
 const printError = (error) => {
     console.log(dedent`
         ${chalk.bgRed('Error:>> ')}
@@ -11,7 +13,7 @@ const printError = (error) => {
 const printSuccess = (message) => {
     console.log(dedent`
         ${chalk.bgGreen('Success:>> ')}
-        ${chalk.bold(message)}
+        ${chalk.bold.green(message)}
     `)
 }
 
@@ -25,4 +27,9 @@ const printHelp = () => {
     )
 }
 
-export { printError, printSuccess, printHelp }
+const printWeather = (data, icon) => {
+    const template = getWeatherTemplate(data, icon)
+    console.log(template);
+}
+
+export { printError, printSuccess, printHelp, printWeather }

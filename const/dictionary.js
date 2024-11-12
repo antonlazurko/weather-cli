@@ -1,4 +1,4 @@
-export const TOKEN_DICTIONARY = {
+export const DICTIONARY = {
     token: 'token',
     city: 'city'
 }
