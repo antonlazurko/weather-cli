@@ -7,6 +7,7 @@
 #### Clone the repository
 `git clone https://github.com/antonlazurko/weather-cli.git`
 
+#### NodeJS is mandatory
 
 #### Install dependencies
 `npm install`
